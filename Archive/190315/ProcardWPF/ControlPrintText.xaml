@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="ProcardWPF.ControlPrintText"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProcardWPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0" x:Name="tbTitle" VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="Wrap" FontWeight="Bold">Наименование</TextBlock>
+        <TextBox Grid.Column="1" x:Name="tbText" VerticalAlignment="Center" Height="22" Visibility="Hidden" TextChanged="tbText_TextChanged"></TextBox>
+        <ComboBox Grid.Column="1" x:Name="cbText" VerticalAlignment="Center" Height="22" Visibility="Hidden"></ComboBox>
+        <Image Grid.Column="1" x:Name="iImage" VerticalAlignment="Stretch" Height="40" Width="40" Visibility="Hidden"></Image>
+    </Grid>
+</UserControl>
