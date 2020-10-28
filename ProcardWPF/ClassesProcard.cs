@@ -9,11 +9,13 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using Neodynamic.WPF;
 using ProcardWPF.Properties;
+using Xceed.Wpf.Toolkit.PropertyGrid.Converters;
 using Application = System.Windows.Application;
 using Brush = System.Windows.Media.Brush;
 using Brushes = System.Windows.Media.Brushes;
@@ -1376,7 +1378,6 @@ namespace ProcardWPF
                 dc.Pop();
             //dc.Close();
         }
-
     }
     public class ImageField : DesignObject
     {
@@ -1980,6 +1981,13 @@ namespace ProcardWPF
                 align = value;
             }
         }
+        public bool IsEmbossFont
+        {
+            get
+            {
+                return (font == EmbossFont.Farrington || font == EmbossFont.Gothic || font == EmbossFont.Braille);
+            }
+        }
         public EmbossText2()
         {
             oType = ObjectType.EmbossText2;
@@ -2535,6 +2543,15 @@ namespace ProcardWPF
             return false;
         }
 
+        public bool HasImage()
+        {
+            for (int i = 0; i < objects.Count; i++)
+            {
+                if (objects[i].OType == ObjectType.TextField || objects[i].OType == ObjectType.ImageField)
+                    return true;
+            }
+            return false;
+        }
         public string GetName(ObjectType ot)
         {
             string res = "";

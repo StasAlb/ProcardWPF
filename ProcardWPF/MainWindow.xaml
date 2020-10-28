@@ -439,7 +439,7 @@
                             </Grid>
                         </GroupBox>
                         <Grid>
-                            <GroupBox Grid.Row="0" x:Name="gbCard" Visibility="Hidden" Height="500" VerticalAlignment="Top">
+                            <GroupBox Grid.Row="0" x:Name="gbCard" Visibility="Visible" Height="500" VerticalAlignment="Top">
                                 <Grid Margin="5,5,5,5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="150"/>
@@ -551,6 +551,7 @@
                                                 <RowDefinition Height="26"></RowDefinition>
                                                 <RowDefinition Height="26"></RowDefinition>
                                                 <RowDefinition Height="26"></RowDefinition>
+                                                <RowDefinition Height="26"></RowDefinition>
                                                 </Grid.RowDefinitions>
                                             <TextBlock Text="{DynamicResource XPSDrivers}" Grid.Row="0" Grid.Column="0" Style="{StaticResource labelStyle}" VerticalAlignment="Center" TextWrapping="Wrap"></TextBlock>
                                             <ComboBox x:Name="cbPrinterDrivers" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectionChanged="cbPrinterDrivers_SelectionChanged"></ComboBox>
@@ -558,7 +559,8 @@
                                             <TextBlock Text="{DynamicResource CE870Hopper}" Grid.Row="2" Grid.Column="0" Style="{StaticResource labelStyle}" VerticalAlignment="Center" TextWrapping="Wrap"></TextBlock>
                                             <TextBox x:Name="tbCEHopper" Grid.Row="2" Grid.Column="1" Width="50" Style="{StaticResource textBoxStyle}" TextChanged="tbCEHopper_OnTextChanged"></TextBox>
                                             <CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="{StaticResource CETopper}" Style="{StaticResource labelStyle}" FontSize="11" IsChecked="{Binding Path=NoTopper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
-                                        </Grid>
+                                            <CheckBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="{StaticResource CEGraphicTopper}" Style="{StaticResource labelStyle}" FontSize="11" IsChecked="{Binding Path=GraphicTopper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                                            </Grid>
                                         </GroupBox>
                                     </Border>
                                 </Grid>

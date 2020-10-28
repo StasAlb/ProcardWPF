@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -42,11 +43,23 @@ namespace Devices
             }
         }
 
+        protected bool graphicTopper;
+
+        public bool GraphicTopper
+        {
+            get { return graphicTopper; }
+            set
+            {
+                graphicTopper = value;
+                RaisePropertyChanged("GraphicTopper");
+            }
+        }
 
         public XPSPrinter()
         {
             printerName = "";
             HopperID = 1;
+            graphicTopper = false;
         }
         public override bool StartJob()
         {

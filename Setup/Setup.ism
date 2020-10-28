@@ -2717,11 +2717,51 @@
 		<col def="I4">TimeStamp</col>
 		<row><td>COMPANY_NAME</td><td>1033</td><td>Ostcard</td><td>0</td><td/><td>438808335</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>598141806</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_ACROBAT5FOLDER</td><td>1033</td><td>   Adobe Acrobat 5 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_ADOBEREADER10FOLDER</td><td>1033</td><td>Adobe Reader 10 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_ADOBEREADER11FOLDER</td><td>1033</td><td>Adobe Reader 11 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_ADOBEREADER6FOLDER</td><td>1033</td><td>Adobe Reader 6 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_ADOBEREADER7FOLDER</td><td>1033</td><td>Adobe Reader 7 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_ADOBEREADER8FOLDER</td><td>1033</td><td>Adobe Reader 8 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_ADOBEREADER9FOLDER</td><td>1033</td><td>Adobe Reader 9 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_ADOBEREADERDCFOLDER</td><td>1033</td><td>Adobe Reader DC needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>598141806</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION10</td><td>1033</td><td>Microsoft .NET Framework 1.0 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION11</td><td>1033</td><td>Microsoft .NET Framework 1.1 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION20</td><td>1033</td><td>Microsoft .NET Framework 2.0 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION20SP1</td><td>1033</td><td>Microsoft .NET Framework 2.0 SP1 or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION30</td><td>1033</td><td>Microsoft .NET Framework 3.0 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION30SP1</td><td>1033</td><td>Microsoft .NET Framework 3.0 SP1 or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION35</td><td>1033</td><td>Microsoft .NET Framework 3.5 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION35SP1</td><td>1033</td><td>Microsoft .NET Framework 3.5 SP1 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION40CLIENT</td><td>1033</td><td>Microsoft .NET Framework 4.0 Client Package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION40FULL</td><td>1033</td><td>Microsoft .NET Framework 4.0 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION451FULL</td><td>1033</td><td>Microsoft .NET Framework 4.5.1 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION452FULL</td><td>1033</td><td>Microsoft .NET Framework 4.5.2 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL</td><td>1033</td><td>Microsoft .NET Framework 4.5 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION461FULL</td><td>1033</td><td>Microsoft .NET Framework 4.6.1 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION46FULL</td><td>1033</td><td>Microsoft .NET Framework 4.6 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_IE10FOUND</td><td>1033</td><td>Internet Explorer 10 or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_IE11FOUND</td><td>1033</td><td>Internet Explorer 11 or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_IE5FOUND</td><td>1033</td><td>Internet Explorer 5 or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_IE6FOUND</td><td>1033</td><td>Internet Explorer 6 or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_IE7FOUND</td><td>1033</td><td>Internet Explorer 7 or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_IE8FOUND</td><td>1033</td><td>Internet Explorer 8 or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_IE9FOUND</td><td>1033</td><td>Internet Explorer 9 or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_MDAC27FOUND</td><td>1033</td><td>MDAC 2.7 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_MDACFOUND</td><td>1033</td><td>MDAC 2.6 SP2 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_MSOFFICE2003</td><td>1033</td><td>Microsoft Office 2003 or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_MSOFFICE2007</td><td>1033</td><td>Microsoft Office 2007 or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_MSOFFICE2010</td><td>1033</td><td>Microsoft Office 2010 or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_MSOFFICE2013x64</td><td>1033</td><td>Microsoft Office 2013 or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_MSOFFICE2013x86</td><td>1033</td><td>Microsoft Office 2013 or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_MSOFFICE2016</td><td>1033</td><td>Microsoft Office 2016 Click-to-Run or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>598141806</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_POWERSHELLVERSION</td><td>1033</td><td>Windows PowerShell needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>598141806</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>598141806</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_SCREEN</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>598141806</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_SQLEXP2008SP1FOUND</td><td>1033</td><td>SQL Server 2008 Express SP1 needs to be installed for this installation to continue.</td><td>0</td><td/><td>-450357229</td></row>
 		<row><td>IDPROP_SETUPTYPE_COMPACT</td><td>1033</td><td>Compact</td><td>0</td><td/><td>598141806</td></row>
 		<row><td>IDPROP_SETUPTYPE_COMPACT_DESC</td><td>1033</td><td>Compact Description</td><td>0</td><td/><td>598141806</td></row>
 		<row><td>IDPROP_SETUPTYPE_COMPLETE</td><td>1033</td><td>Complete</td><td>0</td><td/><td>598141806</td></row>
@@ -3634,6 +3674,10 @@
 		<row><td>IDS__IsAdminInstallPoint_NetworkLocationFormatted</td><td>1033</td><td>{&amp;MSSansBold8}Network Location</td><td>0</td><td/><td>598141806</td></row>
 		<row><td>IDS__IsAdminInstallPoint_SpecifyNetworkLocation</td><td>1033</td><td>Specify a network location for the server image of the product.</td><td>0</td><td/><td>598141806</td></row>
 		<row><td>IDS__IsBrowseButton</td><td>1033</td><td>&amp;Browse...</td><td>0</td><td/><td>598141806</td></row>
+		<row><td>IDS__IsBrowseCertficateDlg_CertificatePath</td><td>1033</td><td>&amp;SSL Certificate Path:</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDS__IsBrowseCertficateDlg_Description</td><td>1033</td><td>SSL Certificate settings.</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDS__IsBrowseCertficateDlg_Password</td><td>1033</td><td>SSL Certificate &amp;Password:</td><td>0</td><td/><td>-450357229</td></row>
+		<row><td>IDS__IsBrowseCertficateDlg_Title</td><td>1033</td><td>{&amp;MSSansBold8}Configure SSL for IIS.</td><td>0</td><td/><td>-450357229</td></row>
 		<row><td>IDS__IsBrowseFolderDlg_11</td><td>1033</td><td/><td>0</td><td/><td>598141806</td></row>
 		<row><td>IDS__IsBrowseFolderDlg_4</td><td>1033</td><td/><td>0</td><td/><td>598141806</td></row>
 		<row><td>IDS__IsBrowseFolderDlg_8</td><td>1033</td><td/><td>0</td><td/><td>598141806</td></row>

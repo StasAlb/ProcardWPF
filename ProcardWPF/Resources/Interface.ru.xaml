@@ -282,6 +282,7 @@
     <system:String x:Key="XPSDrivers">Соединен с драйвером:</system:String>
     <system:String x:Key="CE870Hopper">Номер лотка (CE870):</system:String>
     <system:String x:Key="CETopper">Отключить топпер</system:String>
+    <system:String x:Key="CEGraphicTopper">Топпер графикой</system:String>
     <system:String x:Key="OnlyPrint">Только печать графики</system:String>
     <system:String x:Key="DeviceNotSupported">Устройство печати не поддерживается</system:String>
     <!-- Статусное окно -->

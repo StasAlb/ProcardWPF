@@ -1904,10 +1904,10 @@ namespace ProcardWPF
                     foreach (string printerName in printerNames)
                         cbPrinterDrivers.Items.Add(printerName);
                     cbPrinterDrivers.Text = ((Devices.PrinterClass)card.device).printerName;
-                    da.To = 150;
+                    da.To = 180;
                     da.Duration = TimeSpan.FromSeconds(1);
                     borderPrinter.BeginAnimation(Border.HeightProperty, da);
-                    da.To = 220;
+                    da.To = 250;
                     da.Duration = TimeSpan.FromSeconds(1);
                     gbCard.BeginAnimation(GroupBox.HeightProperty, da);
                     isBorderDevice = true;
