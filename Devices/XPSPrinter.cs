@@ -190,6 +190,11 @@ namespace Devices
 
         public override bool FeedCard(ProcardWPF.FeedType feedType)
         {
+            if (OnlyPrint)
+            {
+                SendMessage(MessageType.CompleteStep, "");
+                return true;
+            }
             SendMessage(MessageType.ProductionMessage, "StatusFeed");
             // в принтере для чтения магнитки отдельной команды для ее загона туда нет
             if (feedType == FeedType.Magstripe)
@@ -212,6 +217,11 @@ namespace Devices
         }
         public override bool ResumeCard()
         {
+            if (OnlyPrint)
+            {
+                SendMessage(MessageType.CompleteStep, "");
+                return true;
+            }
             string xmlFormat = strings.PRINTER_ACTION_XML;
             string input = string.Format(xmlFormat, (int)Actions.Resume, printJobID, 0);
             bidi.SetPrinterData(strings.PRINTER_ACTION, input);

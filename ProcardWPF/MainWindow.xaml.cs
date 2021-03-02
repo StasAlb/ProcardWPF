@@ -2521,7 +2521,8 @@ namespace ProcardWPF
                         printStatus?.SetButtonsEnable(true, true);
                         try
                         {
-                            threadPrint.Abort();
+                            if (threadPrint.ThreadState == ThreadState.Running)
+                                threadPrint.Abort();
                         }
                         catch { }
                     }), System.Windows.Threading.DispatcherPriority.Background);

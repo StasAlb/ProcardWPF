@@ -439,7 +439,7 @@
                             </Grid>
                         </GroupBox>
                         <Grid>
-                            <GroupBox Grid.Row="0" x:Name="gbCard" Visibility="Visible" Height="500" VerticalAlignment="Top">
+                            <GroupBox Grid.Row="0" x:Name="gbCard" Visibility="Hidden" Height="500" VerticalAlignment="Top">
                                 <Grid Margin="5,5,5,5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="150"/>
@@ -924,7 +924,7 @@
                                     <CheckBox x:Name="cbSmartFeedback" Grid.Row="2" Grid.ColumnSpan="2" Content="{DynamicResource Smart_Feedback}" Checked="cbSmartFeedback_Checked" IsEnabled="False"></CheckBox>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Grid.Row="0" x:Name="gbImage" Visibility="Hidden" VerticalAlignment="Top">
+                            <GroupBox Grid.Row="0" x:Name="gbImage" Visibility="Visible" VerticalAlignment="Top">
                                 <Grid Margin="5,5,5,5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="120"/>
