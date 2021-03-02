@@ -2503,9 +2503,10 @@ namespace ProcardWPF
                 {
                     this.Dispatcher.Invoke(new Action(delegate()
                     {
-                        str = (string)this.FindResource(message);
+                        str = (string)this.TryFindResource(message);
                     }), System.Windows.Threading.DispatcherPriority.Background);
-                    
+                    if (String.IsNullOrEmpty(str))
+                        str = message;
                 }
                 catch
                 {
