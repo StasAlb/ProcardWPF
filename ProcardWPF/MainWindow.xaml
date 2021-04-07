@@ -80,6 +80,7 @@
         <CommandBinding Command="{x:Static self:CustomCommands.PrintMode}" Executed="Command_PrintMode" CanExecute="Command_PrintModeCanBeExecuted"/>
         <CommandBinding Command="{x:Static self:CustomCommands.SmartDefaultSave}" Executed="Command_SmartDefaultSave" CanExecute="Command_SmartDefaultSaveCanBeExecuted"></CommandBinding>
         <CommandBinding Command="{x:Static self:CustomCommands.SmartDefaultLoad}" Executed="Command_SmartDefaultLoad" CanExecute="Command_SmartDefaultLoadCanBeExecuted"></CommandBinding>
+        <CommandBinding Command="{x:Static self:CustomCommands.SwapSide}" Executed="Command_SwapSide" CanExecute="Command_SwapSideCanBeExecuted"></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -390,6 +391,7 @@
                                             <ColumnDefinition Width="40"/>
                                             <ColumnDefinition Width="60"/>
                                             <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="30"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="26"/>
@@ -434,6 +436,9 @@
                                                 </Binding>
                                             </TextBox.Text>
                                         </TextBox>
+                                        <Button x:Name="bSwapSide" Grid.Column="8" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{x:Static self:CustomCommands.SwapSide}" BorderThickness="0" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" ToolTip="{StaticResource Field_SwapSide}">
+                                            <Path Data="M16,17.01V10h-2v7.01h-3L15,21l4,-3.99h-3zM9,3L5,6.99h3V14h2V6.99h3L9,3z" Fill="Black" />
+                                        </Button>
                                     </Grid>
                                 </Grid>
                             </Grid>

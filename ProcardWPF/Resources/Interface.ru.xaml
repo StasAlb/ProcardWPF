@@ -68,6 +68,7 @@
     <system:String x:Key="Card_Name_default">Дизайн карты</system:String>
     <system:String x:Key="Field_Width">Ширина:</system:String>
     <system:String x:Key="Field_Height">Высота:</system:String>
+    <system:String x:Key="Field_SwapSide">Поменять сторону</system:String>
     <system:String x:Key="Field_In">Входные данные:</system:String>
     <system:String x:Key="Field_AlignLeft">По левому краю</system:String>
     <system:String x:Key="Field_AlignCenter">По центру</system:String>

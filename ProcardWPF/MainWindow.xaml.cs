@@ -328,20 +328,23 @@ namespace ProcardWPF
                 dict.EndInit();
             }
             #region изменяем содержимое combobox
-            cbTextAlign.Items.Clear();
+            cbTextAlign.ItemsSource = null;
+            //cbTextAlign.Items.Clear();
             List<Para> list = new List<Para>();
             list.Add(new Para((int)TextAlignment.Left, (string)this.FindResource("TextAlignLeft")));
             list.Add(new Para((int)TextAlignment.Center, (string)this.FindResource("TextAlignCenter")));
             list.Add(new Para((int)TextAlignment.Right, (string)this.FindResource("TextAlignRight")));
             cbTextAlign.ItemsSource = list;
-            cbTextRotate.Items.Clear();
+            cbTextRotate.ItemsSource = null;
+            //cbTextRotate.Items.Clear();
             list = new List<Para>();
             list.Add(new Para((int)Rotate.None, (string)this.FindResource("TextRotateNo")));
             list.Add(new Para((int)Rotate.R90, (string)this.FindResource("TextRotate90")));
             list.Add(new Para((int)Rotate.R180, (string)this.FindResource("TextRotate180")));
             list.Add(new Para((int)Rotate.R270, (string)this.FindResource("TextRotate270")));
             cbTextRotate.ItemsSource = list;
-            cbImageStyle.Items.Clear();
+            cbImageStyle.ItemsSource = null;
+            //cbImageStyle.Items.Clear();
             list = new List<Para>();
             list.Add(new Para((int)ImageStyle.FitToField, (string)this.FindResource("Image_StyleStretch")));
             list.Add(new Para((int)ImageStyle.AutoSize, (string)this.FindResource("Image_StyleAuto")));
@@ -520,6 +523,33 @@ namespace ProcardWPF
         {
             e.CanExecute = true;
         }
+        public void Command_SwapSide(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (currentObject == null)
+                return;
+            currentObject.Side = (currentObject.Side == SideType.Front) ? SideType.Back : SideType.Front;
+            DrawCard();
+        }
+        public void Command_SwapSideCanBeExecuted(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = false;
+            switch (currentObject?.OType)
+            {
+                case (ObjectType.Barcode):
+                case (ObjectType.TextField):
+                case (ObjectType.ImageField):
+                    e.CanExecute = true;
+                    break;
+                case (ObjectType.EmbossText2):
+                    if (((EmbossText2)currentObject).Font == EmbossFont.IndentHelveticaBlack || ((EmbossText2)currentObject).Font == EmbossFont.IndentHelveticaWhite)
+                        e.CanExecute = true;
+                    break;
+                default:
+                    e.CanExecute = false;
+                    break;
+            }            
+        }
+
         public void ResetToolBar()
         {
             currentTool = ObjectType.None;
@@ -2350,6 +2380,7 @@ namespace ProcardWPF
 
         private void FMain_drawForPrint1(System.Drawing.Graphics graphics, SideType side)
         {
+            /// перенес в отрисовку объекта
             if (card.device.DeviceType == DeviceType.CE && side == SideType.Front)
             {
                 for (int i=0; i<card.objects.Count; i++)
@@ -2405,7 +2436,14 @@ namespace ProcardWPF
                             {
                                 using (System.Drawing.SolidBrush brush = new System.Drawing.SolidBrush(System.Drawing.Color.Black))
                                 {
-                                    graphics.DrawString(string.Format("~EM%{0};{1:0000};{2:0000};{3}", (int)et.Font, Convert.ToInt32(x * 1000), Convert.ToInt32(y * 1000), txt), font, brush, 50, 50);
+                                    int embossfont = (int)et.Font;
+                                    if (et.Font == EmbossFont.IndentHelveticaBlack || et.Font == EmbossFont.IndentHelveticaWhite)
+                                    {
+                                        if (et.Side == SideType.Back)
+                                            embossfont += 20;
+                                    }
+
+                                    graphics.DrawString(string.Format("~EM%{0};{1:0000};{2:0000};{3}", embossfont, Convert.ToInt32(x * 1000), Convert.ToInt32(y * 1000), txt), font, brush, 50, 50);
                                 }
                             }
                         }
@@ -3441,6 +3479,7 @@ namespace ProcardWPF
 
         }
 
+
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             DrawCard(currentObject.Side);
@@ -3479,5 +3518,6 @@ namespace ProcardWPF
         public static readonly RoutedUICommand LoadDbFile = new RoutedUICommand("LoadDbFile", "LoadDbFile", typeof(CustomCommands));
         public static readonly RoutedUICommand SmartDefaultLoad = new RoutedUICommand("SmartDefaultLoad", "SmartDefaultLoad", typeof(CustomCommands));
         public static readonly RoutedUICommand SmartDefaultSave = new RoutedUICommand("SmartDefaultSave", "SmartDefaultSave", typeof(CustomCommands));
+        public static readonly RoutedUICommand SwapSide = new RoutedUICommand("SwapSide", "SwapSide", typeof(CustomCommands));
     }
 }

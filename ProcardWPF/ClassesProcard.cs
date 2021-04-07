@@ -1948,7 +1948,9 @@ namespace ProcardWPF
                 if (value != font)
                     saved = false;
                 font = value;
-                side = Card.FontSide(font);
+                // для хельвитики не присваиваем жестко, потому что может быть и так и так
+                if (font != EmbossFont.IndentHelveticaWhite && font != EmbossFont.IndentHelveticaBlack)
+                    side = Card.FontSide(font);
                 RaisePropertyChanged("Font");
             }
         }
@@ -2051,8 +2053,13 @@ namespace ProcardWPF
                 if (font == EmbossFont.MCIndent || font == EmbossFont.MCIndentInvert)
                     reverse = true;
                 //sReverse = HugeLib.XmlClass.GetXmlAttribute(xmlSettings, "Embosser/Font", "Name", String.Format("FC{0}", (int)et.Font), "Reverse", xnmSettings);
-
-                dc.DrawText(new FormattedText($"~EM%{(int)font};{x * 1000:0000};{y * 1000:0000};{text}", System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, fontText, fontSize, Brushes.Black), new Point(10, 10));
+                int embossfont = (int)font;
+                if (font == EmbossFont.IndentHelveticaBlack || font == EmbossFont.IndentHelveticaWhite)
+                {
+                    if (Side == SideType.Back)
+                        embossfont += 20;
+                }
+                dc.DrawText(new FormattedText($"~EM%{embossfont};{x * 1000:0000};{y * 1000:0000};{text}", System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, fontText, fontSize, Brushes.Black), new Point(10, 10));
             }
 //            dc.DrawText(string.Format("~EM%{0};{1:0000};{2:0000};{3}", (int)font, Convert.ToInt32(x * 1000), Convert.ToInt32(y * 1000), text), font, Brushes.Black, 50, 50);
         }
