@@ -215,7 +215,7 @@ namespace ProcardWPF
                     break;
 
             }
-            return ds.Tables[0];
+            return ds.Tables?[0];
         }
         public ArrayList GetFieldsList()
         {

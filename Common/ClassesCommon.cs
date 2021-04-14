@@ -43,7 +43,8 @@ namespace ProcardWPF
         Magstripe,
         SmartContactless,
         Print,
-        PrintAfterTurn
+        PrintAfterTurn,
+        NotDefine = -1
     }
     public enum ReaderModel
     {
