@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -802,6 +803,8 @@ namespace ProcardWPF
             }
         }
         private Neodynamic.WPF.Symbology symbology;
+        
+        
         private Color barColor;
         public Color BarColor
         {
@@ -1014,8 +1017,95 @@ namespace ProcardWPF
                     saved = false;
                 symbology = value;
                 RaisePropertyChanged("Symbology");
+                RaisePropertyChanged("IsQR");
             }
         }
+        #region QRcode
+        private QRCodeVersion qrCodeVersion;
+        public QRCodeVersion QRVersion
+        {
+            get { return qrCodeVersion; }
+            set
+            {
+                if (value != qrCodeVersion)
+                    saved = false;
+                qrCodeVersion = value;
+                RaisePropertyChanged("QRVersion");
+            }
+        }
+        private MicroQRCodeVersion qrMicroVersion;
+        public MicroQRCodeVersion QRMicroVersion
+        {
+            get { return qrMicroVersion; }
+            set
+            {
+                if (value != qrMicroVersion)
+                    saved = false;
+                qrMicroVersion = value;
+                RaisePropertyChanged("QRMicroVersion");
+            }
+        }
+        private string qrByteEncoding;
+        public string QRByteEncoding
+        {
+            get { return qrByteEncoding; }
+            set
+            {
+                if (value != qrByteEncoding)
+                    saved = false;
+                qrByteEncoding = value;
+                RaisePropertyChanged("QRByteEncoding");
+            }
+        }
+        private QRCodeEncoding qrEncoding;
+        public QRCodeEncoding QREncoding
+        {
+            get { return qrEncoding; }
+            set
+            {
+                if (value != qrEncoding)
+                    saved = false;
+                qrEncoding = value;
+                RaisePropertyChanged("QREncoding");
+            }
+        }
+        private QRCodeErrorCorrectionLevel qrErrorCorrection;
+        public QRCodeErrorCorrectionLevel QRErrorCorrection
+        {
+            get { return qrErrorCorrection; }
+            set
+            {
+                if (value != qrErrorCorrection)
+                    saved = false;
+                qrErrorCorrection = value;
+                RaisePropertyChanged("QRErrorCorrection");
+            }
+        }
+        private double qrModuleSize;
+        public double QRModuleSize
+        {
+            get { return qrModuleSize; }
+            set
+            {
+                if (value != qrModuleSize)
+                    saved = false;
+                qrModuleSize = value;
+                RaisePropertyChanged("QRModuleSize");
+            }
+        }
+        private bool qrProcessTilde;
+        public bool QRProcessTilde
+        {
+            get { return qrProcessTilde; }
+            set
+            {
+                if (value != qrProcessTilde)
+                    saved = false;
+                qrProcessTilde = value;
+                RaisePropertyChanged("QRProcessTilde");
+            }
+        }
+        #endregion
         public Barcode()
         {
             side = SideType.Front;
@@ -1036,6 +1126,25 @@ namespace ProcardWPF
             header = "";
             headerFont = new MyFont();
             headerColor = Colors.Black;
+            qrCodeVersion = QRCodeVersion.Auto;
+            qrMicroVersion = MicroQRCodeVersion.Auto;
+            qrByteEncoding = "iso-8859-1";
+            qrEncoding = QRCodeEncoding.Auto;
+            qrErrorCorrection = QRCodeErrorCorrectionLevel.L;
+            qrModuleSize = 0.0417;
+            qrProcessTilde = false;
+        }
+
+        private bool _isQr;
+
+        public bool IsQR
+        {
+            get { return (symbology == Symbology.QRCode || symbology == Symbology.MicroQRCode ); }
+            set
+            {
+                _isQr = value;
+                RaisePropertyChanged("IsQR");
+            }
         }
         public override void Draw(DrawingContext dc, Regim regim, bool selected, int step)
         {
@@ -1063,9 +1172,20 @@ namespace ProcardWPF
             Neodynamic.WPF.BarcodeProfessional barCode = new Neodynamic.WPF.BarcodeProfessional();
             barCode.ErrorBehavior = ErrorBehavior.BlankImage;
             barCode.BarcodeUnit = BarcodeUnit.Inch;
+
             //barCode.Width = width;
             //barCode.Height = height;
             barCode.Symbology = symbology;
+            if (barCode.Symbology == Symbology.QRCode || barCode.Symbology == Symbology.MicroQRCode)
+            {
+                barCode.QRCodeVersion = qrCodeVersion;
+                barCode.MicroQRCodeVersion = qrMicroVersion;
+                barCode.QRCodeByteEncodingName = qrByteEncoding;
+                barCode.QRCodeEncoding = qrEncoding;
+                barCode.QRCodeErrorCorrectionLevel = qrErrorCorrection;
+                barCode.QRCodeModuleSize = qrModuleSize;
+                barCode.QRCodeProcessTilde = qrProcessTilde;
+            }
             barCode.BarColor = barColor;
             barCode.Background = new SolidColorBrush(backColor);
             barCode.TextForeground = new SolidColorBrush(textColor);
@@ -1110,9 +1230,9 @@ namespace ProcardWPF
                 }
                 catch { return; }
             }
-            dc.PushTransform(
-                    new TranslateTransform(Card.ClientXToScreen(X), Card.ClientYToScreen(Y + Height, side)));
+            dc.PushTransform(new TranslateTransform(Card.ClientXToScreen(X), Card.ClientYToScreen(Y + Height, side)));
             dc.DrawDrawing(barCode.GetBarcodeDrawing());
+            dc.Pop();
         }
     }
     public class TextField : DesignObject

@@ -181,6 +181,14 @@
     <system:String x:Key="Barcode_HeaderText">Текст заголовка:</system:String>
     <system:String x:Key="Barcode_HeaderFont">Шрифт заголовка:</system:String>
     <system:String x:Key="Barcode_HeaderColor">Цвет заголовка:</system:String>
+    <system:String x:Key="Barcode_QRVersion">QR версия:</system:String>
+    <system:String x:Key="Barcode_QRByteEncoding">Кодовая страница:</system:String>
+    <system:String x:Key="Barcode_QREncoding">Кодировка:</system:String>
+    <system:String x:Key="Barcode_QRErrorCorrection">Коррекция ошибок:</system:String>
+    <system:String x:Key="Barcode_QRModuleSize">Размер модуля:</system:String>
+    <system:String x:Key="Barcode_QRProcessTilde">ProcessTilde</system:String>
+    <system:String x:Key="Barcode_QRMicroVersion">микроQR версия:</system:String>
+
 
     <!-- Выбор базы данных -->
     <system:String x:Key="DBSelect_Title">Выбор базы данных</system:String>

@@ -7,7 +7,7 @@
         xmlns:neoBar="clr-namespace:Neodynamic.WPF;assembly=Neodynamic.WPF.Barcode" 
         x:Class="ProcardWPF.fMain"
         xmlns:toolk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        Title="{DynamicResource WindowTitle}" Height="850" Loaded="Window_Loaded" Width="900"
+        Title="{DynamicResource WindowTitle}" Height="950" Loaded="Window_Loaded" Width="900"
         Icon="Procard.ico"
         >
     <Window.Resources>
@@ -26,7 +26,7 @@
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Red"/>
                 <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Red"/>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Red"/>
-            </Style.Resources> 
+            </Style.Resources>
         </Style>
         <Style x:Key="labelStyle">
             <Setter Property="Control.FontWeight" Value="Bold"></Setter>
@@ -47,6 +47,28 @@
                 <x:Type TypeName="neoBar:Symbology"></x:Type>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <ObjectDataProvider x:Key="QRVersionEnum" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="neoBar:QRCodeVersion"></x:Type>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="MicroQrVersion" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="neoBar:MicroQRCodeVersion"></x:Type>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="QRErrorCorrectionEnum" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="neoBar:QRCodeErrorCorrectionLevel"></x:Type>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="QREncodingEnum" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="neoBar:QRCodeEncoding"></x:Type>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static self:CustomCommands.FileNew}" Executed="Command_FileNew" CanExecute="Command_FileNewCanBeExecuted" />
@@ -122,7 +144,7 @@
                     </Menu>
                     <Separator/>
                     <Button ToolTip="{DynamicResource ToolBar_New}" Command="{x:Static self:CustomCommands.FileNew}">
-                        <Canvas Width="24" Height="24">                            
+                        <Canvas Width="24" Height="24">
                             <Path Data="M20,18H4V8H20M20,6H12L10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6Z" Fill="Black" />
                         </Canvas>
                         <!--<Image Source="pack://application:,,,/Images/New.bmp"/>-->
@@ -159,7 +181,7 @@
             </ToolBarTray>
         </StackPanel>
         <Grid x:Name="gLogo" Grid.Row="1" Visibility="Hidden" Background="#FFF0F0F0" >
-            <Viewbox Stretch="None" Height="100" Width="500"> 
+            <Viewbox Stretch="None" Height="100" Width="500">
                 <Canvas>
                     <!--<Path Data="M-180,40v-80h40v80z" Stroke="Gray" StrokeThickness="1"></Path>
                     <Path Data="M-125,40v-80h40v80z" Stroke="Gray" StrokeThickness="1"></Path>
@@ -168,7 +190,7 @@
                     <Path Data="M35,40v-80h40v80z" Stroke="Gray" StrokeThickness="1"></Path>
                     <Path Data="M90,40v-80h40v80z" Stroke="Gray" StrokeThickness="1"></Path>
                     <Path Data="M145,40v-80h40v80z" Stroke="Gray" StrokeThickness="1"></Path>-->
-                    
+
                     <Path Data="M-180,40v-80h20a20,20 0 0,1 0 40h-20" Stroke="Black" StrokeThickness="5"></Path>
                     <Path Data="M-125,40v-80h20a20,20 0 0,1 0 40h-17l37,40" Stroke="Black" StrokeThickness="5"></Path>
                     <Path Data="M-50,40a20,40 0 0,1 0,-80a20,40 0 0,1 0,80" Stroke="Black" StrokeThickness="5"></Path>
@@ -351,7 +373,7 @@
                         <GroupBox Height="260" Header="{DynamicResource Fields_List}" FontWeight="Bold">
                             <ListBox x:Name="lbFields" SelectionChanged="lbFields_SelectionChanged" Style="{StaticResource myStyle}" KeyUp="lbFields_KeyUp">
                             </ListBox>
-<!--
+                            <!--
                             <ListBox x:Name="lbFields" Style="{StaticResource myStyle}" HorizontalContentAlignment="Stretch" SelectionChanged="lbFields_SelectionChanged">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
@@ -459,7 +481,7 @@
                                     <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource labelStyle}" Content="{DynamicResource Card_InDb}"/>
                                     <TextBox x:Name="tbDbIn" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Height="22" IsReadOnly="True"/>
                                     <Button x:Name="bDBIn" Grid.Row="0" Grid.Column="2" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center" Click="bDBIn_Click" BorderThickness="0" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" >
-                                        <Path Data="M11,9.16V2c-5,0.5 -9,4.79 -9,10s4,9.5 9,10v-7.16c-1,-0.41 -2,-1.52 -2,-2.84s1,-2.43 2,-2.84zM14.86,11H22c-0.48,-4.75 -4,-8.53 -9,-9v7.16c1,0.3 1.52,0.98 1.86,1.84zM13,14.84V22c5,-0.47 8.52,-4.25 9,-9h-7.14c-0.34,0.86 -0.86,1.54 -1.86,1.84z" Fill="Black" />                                        
+                                        <Path Data="M11,9.16V2c-5,0.5 -9,4.79 -9,10s4,9.5 9,10v-7.16c-1,-0.41 -2,-1.52 -2,-2.84s1,-2.43 2,-2.84zM14.86,11H22c-0.48,-4.75 -4,-8.53 -9,-9v7.16c1,0.3 1.52,0.98 1.86,1.84zM13,14.84V22c5,-0.47 8.52,-4.25 9,-9h-7.14c-0.34,0.86 -0.86,1.54 -1.86,1.84z" Fill="Black" />
                                     </Button>
                                     <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource labelStyle}" Content="{DynamicResource Card_OutDb}"/>
                                     <TextBox x:Name="tbDbOut" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Height="22" IsReadOnly="True"/>
@@ -546,25 +568,25 @@
                                     </Border>
                                     <Border BorderBrush="Gray" CornerRadius="0,10,10,10" BorderThickness="0" Name="borderPrinter" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Height="200" VerticalAlignment="Top">
                                         <GroupBox x:Name="xpsProperties">
-                                        <Grid Margin="5,25,0,0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="145"></ColumnDefinition>
-                                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="36"></RowDefinition>
-                                                <RowDefinition Height="26"></RowDefinition>
-                                                <RowDefinition Height="26"></RowDefinition>
-                                                <RowDefinition Height="26"></RowDefinition>
-                                                <RowDefinition Height="26"></RowDefinition>
+                                            <Grid Margin="5,25,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="145"></ColumnDefinition>
+                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="36"></RowDefinition>
+                                                    <RowDefinition Height="26"></RowDefinition>
+                                                    <RowDefinition Height="26"></RowDefinition>
+                                                    <RowDefinition Height="26"></RowDefinition>
+                                                    <RowDefinition Height="26"></RowDefinition>
                                                 </Grid.RowDefinitions>
-                                            <TextBlock Text="{DynamicResource XPSDrivers}" Grid.Row="0" Grid.Column="0" Style="{StaticResource labelStyle}" VerticalAlignment="Center" TextWrapping="Wrap"></TextBlock>
-                                            <ComboBox x:Name="cbPrinterDrivers" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectionChanged="cbPrinterDrivers_SelectionChanged"></ComboBox>
-                                            <CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="{StaticResource OnlyPrint}" Style="{StaticResource labelStyle}" FontSize="11" IsChecked="{Binding Path=OnlyPrint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
-                                            <TextBlock Text="{DynamicResource CE870Hopper}" Grid.Row="2" Grid.Column="0" Style="{StaticResource labelStyle}" VerticalAlignment="Center" TextWrapping="Wrap"></TextBlock>
-                                            <TextBox x:Name="tbCEHopper" Grid.Row="2" Grid.Column="1" Width="50" Style="{StaticResource textBoxStyle}" TextChanged="tbCEHopper_OnTextChanged"></TextBox>
-                                            <CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="{StaticResource CETopper}" Style="{StaticResource labelStyle}" FontSize="11" IsChecked="{Binding Path=NoTopper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
-                                            <CheckBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="{StaticResource CEGraphicTopper}" Style="{StaticResource labelStyle}" FontSize="11" IsChecked="{Binding Path=GraphicTopper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                                                <TextBlock Text="{DynamicResource XPSDrivers}" Grid.Row="0" Grid.Column="0" Style="{StaticResource labelStyle}" VerticalAlignment="Center" TextWrapping="Wrap"></TextBlock>
+                                                <ComboBox x:Name="cbPrinterDrivers" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectionChanged="cbPrinterDrivers_SelectionChanged"></ComboBox>
+                                                <CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="{StaticResource OnlyPrint}" Style="{StaticResource labelStyle}" FontSize="11" IsChecked="{Binding Path=OnlyPrint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                                                <TextBlock Text="{DynamicResource CE870Hopper}" Grid.Row="2" Grid.Column="0" Style="{StaticResource labelStyle}" VerticalAlignment="Center" TextWrapping="Wrap"></TextBlock>
+                                                <TextBox x:Name="tbCEHopper" Grid.Row="2" Grid.Column="1" Width="50" Style="{StaticResource textBoxStyle}" TextChanged="tbCEHopper_OnTextChanged"></TextBox>
+                                                <CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="{StaticResource CETopper}" Style="{StaticResource labelStyle}" FontSize="11" IsChecked="{Binding Path=NoTopper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                                                <CheckBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" Content="{StaticResource CEGraphicTopper}" Style="{StaticResource labelStyle}" FontSize="11" IsChecked="{Binding Path=GraphicTopper, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
                                             </Grid>
                                         </GroupBox>
                                     </Border>
@@ -643,7 +665,7 @@
                                             </Binding>
                                         </TextBox.Text>
                                     </TextBox>
-                                    <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource labelStyle}" Grid.ColumnSpan="4" x:Name="lEmbossText2Length" Content="{Binding ShablonLength}"/>                                    
+                                    <Label Grid.Column="0" Grid.Row="1" Style="{StaticResource labelStyle}" Grid.ColumnSpan="4" x:Name="lEmbossText2Length" Content="{Binding ShablonLength}"/>
                                     <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource labelStyle}" Content="{DynamicResource EmbossLine_FontLabel}"/>
                                     <ComboBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" x:Name="cbEmbossLine2_Font" Width="140" HorizontalAlignment="Left"  IsEditable="False" IsReadOnly="True"
                                               ItemsSource="{Binding Source={StaticResource FontEnum}}" SelectedItem="{Binding Path=Font}"/>
@@ -725,7 +747,7 @@
                                         </TextBox.Text>
                                     </TextBox>
                                     <Button x:Name="bTextFieldFont" Grid.Row="1" Grid.Column="2" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center" Click="bTextFieldFont_Click" BorderThickness="0" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" ToolTip="{StaticResource TextFontChange}">
-                                        <Path Data="M5,17v2h14v-2L5,17zM9.5,12.8h5l0.9,2.2h2.1L12.75,4h-1.5L6.5,15h2.1l0.9,-2.2zM12,5.98L13.87,11h-3.74L12,5.98z" Fill="Black"></Path>                                              
+                                        <Path Data="M5,17v2h14v-2L5,17zM9.5,12.8h5l0.9,2.2h2.1L12.75,4h-1.5L6.5,15h2.1l0.9,-2.2zM12,5.98L13.87,11h-3.74L12,5.98z" Fill="Black"></Path>
                                     </Button>
                                     <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
                                         <Grid.ColumnDefinitions>
@@ -738,7 +760,7 @@
                                             <RowDefinition Height="25"></RowDefinition>
                                         </Grid.RowDefinitions>
                                         <Label Grid.Column="0" Grid.Row="0" Content="{StaticResource TextFontColor}" VerticalAlignment="Top" Style="{StaticResource labelStyle}"></Label>
-                                        <Label Grid.Column="1" Grid.Row="0" Content="{StaticResource TextFontBackcolor}" VerticalAlignment="Top" Style="{StaticResource labelStyle}"></Label>                                        
+                                        <Label Grid.Column="1" Grid.Row="0" Content="{StaticResource TextFontBackcolor}" VerticalAlignment="Top" Style="{StaticResource labelStyle}"></Label>
                                         <toolk:ColorPicker Grid.Column="0" Grid.Row="1" BorderThickness="1" Margin="5,0,5,0" Height="23" SelectedColorChanged="ColorToolbar_SelectedColorChanged" SelectedColor="{Binding Path=TextColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                         <toolk:ColorPicker Grid.Column="1" Grid.Row="1" BorderThickness="1" Margin="5,0,0,0" Height="23" SelectedColorChanged="ColorToolbar_SelectedColorChanged" SelectedColor="{Binding Path=BackColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                         <CheckBox Grid.Row="2" Grid.Column="2" Margin="5,0,0,0" VerticalAlignment="Bottom" Content="{StaticResource TextFontTransparent}" Style="{StaticResource labelStyle}" FontSize="11" IsChecked="{Binding Path=IsTransparent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
@@ -751,7 +773,7 @@
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="25"></RowDefinition>
-                                            <RowDefinition Height="25"></RowDefinition>                                            
+                                            <RowDefinition Height="25"></RowDefinition>
                                             <RowDefinition Height="25"></RowDefinition>
                                         </Grid.RowDefinitions>
                                         <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource labelStyle}" Content="{DynamicResource TextAlign}"/>
@@ -766,7 +788,7 @@
                                             <Path Data="M11,9.16V2c-5,0.5 -9,4.79 -9,10s4,9.5 9,10v-7.16c-1,-0.41 -2,-1.52 -2,-2.84s1,-2.43 2,-2.84zM14.86,11H22c-0.48,-4.75 -4,-8.53 -9,-9v7.16c1,0.3 1.52,0.98 1.86,1.84zM13,14.84V22c5,-0.47 8.52,-4.25 9,-9h-7.14c-0.34,0.86 -0.86,1.54 -1.86,1.84z" Fill="Black" />
                                         </Button>
                                     </Grid>
-                                </Grid>                                
+                                </Grid>
                             </GroupBox>
                             <GroupBox Grid.Row="0" x:Name="gbSmart" Visibility="Hidden" VerticalAlignment="Top" Height="400">
                                 <Grid Margin="5,5,5,5">
@@ -929,7 +951,7 @@
                                     <CheckBox x:Name="cbSmartFeedback" Grid.Row="2" Grid.ColumnSpan="2" Content="{DynamicResource Smart_Feedback}" Checked="cbSmartFeedback_Checked" IsEnabled="False"></CheckBox>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Grid.Row="0" x:Name="gbImage" Visibility="Visible" VerticalAlignment="Top">
+                            <GroupBox Grid.Row="0" x:Name="gbImage" Visibility="Hidden" VerticalAlignment="Top">
                                 <Grid Margin="5,5,5,5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="120"/>
@@ -954,7 +976,7 @@
                                               SelectedValuePath="ID" SelectedValue="{Binding StyleBinding, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Grid.Row="0" x:Name="gbBarcode" Visibility="Hidden" VerticalAlignment="Top">
+                            <GroupBox Grid.Row="0" x:Name="gbBarcode" Visibility="Visible" VerticalAlignment="Top">
                                 <Grid Margin="5,5,5,5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="120"/>
@@ -975,6 +997,7 @@
                                         <RowDefinition Height="24"/>
                                         <RowDefinition Height="24"/>
                                         <RowDefinition Height="24"/>
+                                        <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource labelStyle}" Content="{DynamicResource Field_In}"/>
                                     <ComboBox Grid.Column="1" Grid.Row="0" x:Name="cbBarcodeIn" Height="20" HorizontalAlignment="Stretch" SelectionChanged="comboBoxDataIn_SelectionChanged"/>
@@ -992,9 +1015,8 @@
                                         </TextBox.Text>
                                     </TextBox>
                                     <Label Grid.Column="0" Grid.Row="2" Style="{StaticResource labelStyle}" Content="{StaticResource Barcode_Type}"></Label>
-                                    <ComboBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" x:Name="cbBarcodeType" Height="20" HorizontalAlignment="Stretch"
-                                              ItemsSource="{Binding Source={StaticResource BarcodeEnum}}" SelectedItem="{Binding Path=Symbology}">
-                                    </ComboBox>
+                                    <ComboBox Grid.Row="2" Grid.ColumnSpan="2" x:Name="cbBarcodeType" Height="20" HorizontalAlignment="Stretch"
+                                              ItemsSource="{Binding Source={StaticResource BarcodeEnum}}" SelectedItem="{Binding Path=Symbology}" Margin="0,2" Grid.Column="1"/>
                                     <Label Grid.Column="0" Grid.Row="3" Style="{StaticResource labelStyle}" Content="{StaticResource Barcode_TextFont}"></Label>
                                     <TextBox Grid.Column="1" Grid.Row="3" x:Name="tbBarcodeFont" Style="{StaticResource textBoxStyle}" HorizontalAlignment="Stretch" IsReadOnly="true">
                                         <TextBox.Text>
@@ -1095,6 +1117,70 @@
                                     </Button>
                                     <Label Grid.Column="0" Grid.Row="12" Content="{StaticResource Barcode_HeaderColor}" VerticalAlignment="Top" Style="{StaticResource labelStyle}"></Label>
                                     <toolk:ColorPicker Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="12" BorderThickness="1" Height="23" SelectedColorChanged="ColorToolbar_SelectedColorChanged" SelectedColor="{Binding Path=HeaderColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <GroupBox Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="3" Header="QR-code">
+                                        <GroupBox.Style>
+                                            <Style TargetType="GroupBox">
+                                                <Setter Property="Visibility" Value="Hidden"></Setter>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsQR}" Value="True">
+                                                        <Setter Property="Visibility" Value="Visible"></Setter>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </GroupBox.Style>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="24"></RowDefinition>
+                                                <RowDefinition Height="24"></RowDefinition>
+                                                <RowDefinition Height="24"></RowDefinition>
+                                                <RowDefinition Height="24"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource labelStyle}" Content="{StaticResource Barcode_QRVersion}"></Label>
+                                            <ComboBox Grid.Row="0" Grid.Column="1"  x:Name="cbQRVersion" Height="20" HorizontalAlignment="Stretch" Width="50"
+                                                  ItemsSource="{Binding Source={StaticResource QRVersionEnum}}" SelectedItem="{Binding Path=QRVersion}">
+                                            </ComboBox>
+                                            <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource labelStyle}" Content="{StaticResource Barcode_QRMicroVersion}"></Label>
+                                            <ComboBox Grid.Row="0" Grid.Column="3" x:Name="cbQRMicroVersion" Height="20" HorizontalAlignment="Stretch" Width="50"
+                                                          ItemsSource="{Binding Source={StaticResource MicroQrVersion}}" SelectedItem="{Binding Path=MicroQRCodeVersion}">
+                                            </ComboBox>
+                                            <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource labelStyle}" Content="{StaticResource Barcode_QREncoding}"></Label>
+                                            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbQREncoding" Height="20" HorizontalAlignment="Stretch" Width="50"
+                                                        ItemsSource="{Binding Source={StaticResource QREncodingEnum}}" SelectedItem="{Binding Path=QREncoding}">
+                                            </ComboBox>
+                                            <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource labelStyle}" Content="{StaticResource Barcode_QRErrorCorrection}"></Label>
+                                            <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cbQRErrorCorrection" Height="20" HorizontalAlignment="Stretch" Width="50"
+                                                        ItemsSource="{Binding Source={StaticResource QRErrorCorrectionEnum}}" SelectedItem="{Binding Path=QRErrorCorrection}">
+                                            </ComboBox>
+                                            <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource labelStyle}" Content="{StaticResource Barcode_QRByteEncoding}"></Label>
+                                            <TextBox Grid.Row="2" Grid.Column="1" x:Name="tbQRByteEncoding" Style="{StaticResource textBoxStyle}" HorizontalAlignment="Stretch" TextChanged="textBoxChanged">
+                                                <TextBox.Text>
+                                                    <Binding Path="QRByteEncoding" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding.ValidationRules>
+                                                            <common:StringRule AllowEmpty="True"></common:StringRule>
+                                                        </Binding.ValidationRules>
+                                                    </Binding>
+                                                </TextBox.Text>
+                                            </TextBox>
+                                            <Label Grid.Row="2" Grid.Column="2" Style="{StaticResource labelStyle}" Content="{StaticResource Barcode_QRModuleSize}"></Label>
+                                            <TextBox Grid.Row="2" Grid.Column="3" x:Name="tbQRModuleSize" Style="{StaticResource textBoxStyle}" HorizontalAlignment="Stretch" TextChanged="textBoxChanged">
+                                                <TextBox.Text>
+                                                    <Binding Path="QRModuleSize" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" StringFormat="N5">
+                                                        <Binding.ValidationRules>
+                                                            <common:DoubleRule></common:DoubleRule>
+                                                        </Binding.ValidationRules>
+                                                    </Binding>
+                                                </TextBox.Text>
+                                            </TextBox>
+                                            <CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="5,0,0,0" VerticalAlignment="Center" Content="{StaticResource Barcode_QRProcessTilde}" Style="{StaticResource labelStyle}" FontSize="11" IsChecked="{Binding Path=QRProcessTilde, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Checked="CheckBox_Checked"></CheckBox>
+                                        </Grid>
+                                    </GroupBox>
                                 </Grid>
                             </GroupBox>
                         </Grid>
