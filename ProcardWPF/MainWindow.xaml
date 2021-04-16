@@ -1143,23 +1143,23 @@
                                             </Grid.ColumnDefinitions>
 
                                             <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource labelStyle}" Content="{StaticResource Barcode_QRVersion}"></Label>
-                                            <ComboBox Grid.Row="0" Grid.Column="1"  x:Name="cbQRVersion" Height="20" HorizontalAlignment="Stretch" Width="50"
+                                            <ComboBox Grid.Row="0" Grid.Column="1"  x:Name="cbQRVersion" Height="20" HorizontalAlignment="Left" Width="100"
                                                   ItemsSource="{Binding Source={StaticResource QRVersionEnum}}" SelectedItem="{Binding Path=QRVersion}">
                                             </ComboBox>
                                             <Label Grid.Row="0" Grid.Column="2" Style="{StaticResource labelStyle}" Content="{StaticResource Barcode_QRMicroVersion}"></Label>
-                                            <ComboBox Grid.Row="0" Grid.Column="3" x:Name="cbQRMicroVersion" Height="20" HorizontalAlignment="Stretch" Width="50"
-                                                          ItemsSource="{Binding Source={StaticResource MicroQrVersion}}" SelectedItem="{Binding Path=MicroQRCodeVersion}">
+                                            <ComboBox Grid.Row="0" Grid.Column="3" x:Name="cbQRMicroVersion" Height="20" HorizontalAlignment="Left" Width="100"
+                                                          ItemsSource="{Binding Source={StaticResource MicroQrVersion}}" SelectedItem="{Binding Path=QRMicroVersion}">
                                             </ComboBox>
                                             <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource labelStyle}" Content="{StaticResource Barcode_QREncoding}"></Label>
-                                            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbQREncoding" Height="20" HorizontalAlignment="Stretch" Width="50"
+                                            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cbQREncoding" Height="20" HorizontalAlignment="Left" Width="100"
                                                         ItemsSource="{Binding Source={StaticResource QREncodingEnum}}" SelectedItem="{Binding Path=QREncoding}">
                                             </ComboBox>
                                             <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource labelStyle}" Content="{StaticResource Barcode_QRErrorCorrection}"></Label>
-                                            <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cbQRErrorCorrection" Height="20" HorizontalAlignment="Stretch" Width="50"
+                                            <ComboBox Grid.Row="1" Grid.Column="3" x:Name="cbQRErrorCorrection" Height="20" HorizontalAlignment="Left" Width="100"
                                                         ItemsSource="{Binding Source={StaticResource QRErrorCorrectionEnum}}" SelectedItem="{Binding Path=QRErrorCorrection}">
                                             </ComboBox>
                                             <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource labelStyle}" Content="{StaticResource Barcode_QRByteEncoding}"></Label>
-                                            <TextBox Grid.Row="2" Grid.Column="1" x:Name="tbQRByteEncoding" Style="{StaticResource textBoxStyle}" HorizontalAlignment="Stretch" TextChanged="textBoxChanged">
+                                            <TextBox Grid.Row="2" Grid.Column="1" x:Name="tbQRByteEncoding" Style="{StaticResource textBoxStyle}" HorizontalAlignment="Left" TextChanged="textBoxChanged" Width="100">
                                                 <TextBox.Text>
                                                     <Binding Path="QRByteEncoding" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
                                                         <Binding.ValidationRules>
@@ -1169,7 +1169,7 @@
                                                 </TextBox.Text>
                                             </TextBox>
                                             <Label Grid.Row="2" Grid.Column="2" Style="{StaticResource labelStyle}" Content="{StaticResource Barcode_QRModuleSize}"></Label>
-                                            <TextBox Grid.Row="2" Grid.Column="3" x:Name="tbQRModuleSize" Style="{StaticResource textBoxStyle}" HorizontalAlignment="Stretch" TextChanged="textBoxChanged">
+                                            <TextBox Grid.Row="2" Grid.Column="3" x:Name="tbQRModuleSize" Style="{StaticResource textBoxStyle}" HorizontalAlignment="Left" TextChanged="textBoxChanged" Width="100">
                                                 <TextBox.Text>
                                                     <Binding Path="QRModuleSize" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged" StringFormat="N5">
                                                         <Binding.ValidationRules>
