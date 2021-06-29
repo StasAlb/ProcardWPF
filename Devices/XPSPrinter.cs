@@ -234,8 +234,12 @@ namespace Devices
             SendMessage(MessageType.ProductionMessage, "PrintingInProgress");
             try
             {
-                if (!String.IsNullOrEmpty(magstripe[0]) || !String.IsNullOrEmpty(magstripe[1]) || !String.IsNullOrEmpty(magstripe[2]))
-                    EncodeMagstripe();
+                if (!String.IsNullOrEmpty(magstripe[0]) || !String.IsNullOrEmpty(magstripe[1]) ||
+                    !String.IsNullOrEmpty(magstripe[2]))
+                {
+                    if (!OnlyPrint)
+                        EncodeMagstripe();
+                }
 
                 PrintQueue printQueue = new PrintQueue(new LocalPrintServer(), printerName);
                 PrintTicket printTicket = new PrintTicket();
@@ -270,6 +274,8 @@ namespace Devices
                 
                 if (dvFrontImage != null)
                     printDialog.PrintVisual(dvFrontImage, "Print");
+                if (dvBackImage != null)
+                    printDialog.PrintVisual(dvBackImage, "Print");
 
                 //PrintDocument printDocument = new PrintDocument();
                 //printDocument.PrinterSettings.PrinterName = printerName;

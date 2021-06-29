@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using HugeLib;
 
 namespace ProcardWPF
 {
@@ -175,7 +176,14 @@ namespace ProcardWPF
                     {
                         comm.CommandText = $"select * from [{table}] {filter}";
                         OdbcDataAdapter ad = new OdbcDataAdapter(comm);
-                        ad.Fill(ds);
+                        try
+                        {
+                            ad.Fill(ds);
+                        }
+                        catch (Exception ex)
+                        {
+                            LogClass.WriteToLog($"Db load error: {ex.Message}");
+                        }
                     }
                     break;
                 case DBTypes.OleText:
@@ -183,11 +191,19 @@ namespace ProcardWPF
                     {
                         comm.CommandText = $"select * from [{table}] {filter}";
                         OleDbDataAdapter ad = new OleDbDataAdapter(comm);
-                        ad.Fill(ds);
+                        try
+                        {
+                            ad.Fill(ds);
+                        }
+                        catch (Exception ex)
+                        {
+                            LogClass.WriteToLog($"Db load error: {ex.Message}");
+                        }
+
                     }
                     break;
             }
-            return ds.Tables[0];
+            return (ds.Tables.Count > 0) ? ds.Tables[0] : null;
         }
         public DataTable GetData(int maxCount)
         {

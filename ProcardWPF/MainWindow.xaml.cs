@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using Devices;
+using HugeLib;
 using Xceed.Wpf.Toolkit;
 
 
@@ -788,7 +789,7 @@ namespace ProcardWPF
                         if (((MagStripe)card.objects[i]).InTypeM[t] == InTypes.None)
                             ((MagStripe)card.objects[i]).SetText("", t);
                         if (((MagStripe)card.objects[i]).InTypeM[t] == InTypes.Db && currentRecord >= 0)
-                            ((MagStripe)card.objects[i]).SetText(dataIn.Rows[currentRecord][((MagStripe)card.objects[i]).InDataM[t]].ToString(), t);
+                            ((MagStripe)card.objects[i]).SetText(dataIn?.Rows[currentRecord][((MagStripe)card.objects[i]).InDataM[t]].ToString(), t);
                         if (((MagStripe)card.objects[i]).InTypeM[t] == InTypes.Keyboard)
                             ((MagStripe)card.objects[i]).SetText("", t);
                     }
@@ -808,7 +809,7 @@ namespace ProcardWPF
                         card.objects[i].SetText(((Barcode)card.objects[i]).Shablon);
                 }
                 if (card.objects[i].InType == InTypes.Db && currentRecord >= 0)
-                    card.objects[i].SetText(dataIn.Rows[currentRecord][card.objects[i].InData].ToString());
+                    card.objects[i].SetText(dataIn?.Rows[currentRecord][card.objects[i].InData].ToString());
                 if (card.objects[i].InType == InTypes.Keyboard)
                     card.objects[i].SetText("");
                 if (card.objects[i].OType == ObjectType.ImageField && card.objects[i].InType == InTypes.File)
@@ -933,6 +934,12 @@ namespace ProcardWPF
                             len = 0;
                         }
                         one = len > 0 ? one.Substring(start - 1, len) : one.Substring(start - 1);
+                    }
+                    if (ca[i].Function == CompositeFunc.SubStringString)
+                    {
+                        string start = (ca[i].Parameters.Count > 1 && String.IsNullOrEmpty((string)ca[i].Parameters[0])) ? "" : (string) ca[i].Parameters[0];
+                        string end = (ca[i].Parameters.Count > 1 && String.IsNullOrEmpty((string)ca[i].Parameters[1])) ? "" : (string)ca[i].Parameters[1];
+                        one = Utils.Substring(one, start, end);
                     }
                     if (ca[i].Function == CompositeFunc.Split && ca[i].Parameters.Count == 2)
                     {
@@ -2716,24 +2723,33 @@ namespace ProcardWPF
                             }
                         }
                     }
-                    
-                    
+
                     card.SetTopLeftForPrint();
-                    DrawingVisual dw = new DrawingVisual();
+                    DrawingVisual dwf = new DrawingVisual();
+                    DrawingVisual dwb = new DrawingVisual();
 
                     //DrawingContext dc = dw.RenderOpen();
                     //                    RenderTargetBitmap bitmap = new RenderTargetBitmap(
                     //                      Card.ClientToScreen(Card.Width), Card.ClientToScreen(Card.Height), 300, 300, PixelFormats.Default);
-                    using (DrawingContext dc = dw.RenderOpen())
+                    using (DrawingContext dc = dwf.RenderOpen())
                     {
                         for (int i = 0; i < card.objects.Count; i++)
-                            card.objects[i].Draw(dc, Regim.ToPrinter, false, 0);
+                            if (card.objects[i].Side == SideType.Front)
+                                card.objects[i].Draw(dc, Regim.ToPrinter, false, 0);
                         dc.Close();
                     }
+                    using (DrawingContext dc = dwb.RenderOpen())
+                    {
+                        for (int i = 0; i < card.objects.Count; i++)
+                            if (card.objects[i].Side == SideType.Back)
+                                card.objects[i].Draw(dc, Regim.ToPrinter, false, 0);
+                        dc.Close();
+                    }
+
                     //dc.Close();
 
                     if (DeviceClass.IsPrinter(card.device.DeviceType))
-                        ((Devices.PrinterClass)card.device).SetImages(dw, null);
+                        ((Devices.PrinterClass)card.device).SetImages(dwf, dwb);
                     card.device.PrintCard();
 #endregion
                     break;

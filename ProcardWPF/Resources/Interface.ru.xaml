@@ -249,9 +249,11 @@
     <system:String x:Key="Composite_FAddChar1">Длина поля:</system:String>
     <system:String x:Key="Composite_FAddChar2">Символ:</system:String>
     <system:String x:Key="Composite_FSubstring">Вырезать часть строки</system:String>
+    <system:String x:Key="Composite_FSubstringString">Вырезать часть строки (строка)</system:String>
     <system:String x:Key="Composite_FSubstringShort">Часть строки</system:String>
     <system:String x:Key="Composite_FSubstring1">Начало:</system:String>
     <system:String x:Key="Composite_FSubstring2">Длина:</system:String>
+    <system:String x:Key="Composite_FSubstring3">Конец:</system:String>
     <system:String x:Key="Composite_FArrayItem">Элемент массива</system:String>
     <system:String x:Key="Composite_FArrayItemShort">Элемент массива</system:String>
     <system:String x:Key="Composite_FArrayItem1">Разделитель:</system:String>

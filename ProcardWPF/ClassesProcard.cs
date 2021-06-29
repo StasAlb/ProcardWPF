@@ -111,7 +111,8 @@ namespace ProcardWPF
         SubString = 2,
         Split = 3,
         Ean13 = 4,
-        Sphinx = 5
+        Sphinx = 5,
+        SubStringString = 6
     }
 
     public enum ObjectType : int
@@ -1430,8 +1431,15 @@ namespace ProcardWPF
 //        }
         //public override void Draw(DrawingVisual dv, Regim regim, bool selected, int step)
         //{
+            
+
             string textToDraw = (regim == Regim.Design) ? shablon : text;
-          //  DrawingContext dc = dv.RenderOpen();
+            if (regim == Regim.Print)
+            {
+                if (textToDraw == null)
+                    textToDraw = "";
+            }
+            //  DrawingContext dc = dv.RenderOpen();
             FormattedText ft = new FormattedText(textToDraw, System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, font.GetTypeface(), font.FontSize * 96.0 / 72.0, fontBrush);
             ft.TextAlignment = (TextAlignment)hAlignment;
             if (font.IsStrikeout || font.IsUnderline)
@@ -2124,6 +2132,8 @@ namespace ProcardWPF
         }
         public override void Draw(DrawingContext dc, Regim regim, bool selected, int step)
         {
+            if (text == null)
+                text = "";
             double lf = X;
             double tp = Y;
             lf = lf - Card.FontWidth(font) / 2.0;
@@ -3361,6 +3371,10 @@ namespace ProcardWPF
                     res = String.Format("{0} - {1}[{2},'{3}']", dname, fname, (parameters.Count > 0) ? parameters[0] : "", (parameters.Count > 1) ? parameters[1] : "");
                     break;
                 case (CompositeFunc.SubString):
+                    fname = (string)Application.Current.FindResource("Composite_FSubstringShort");
+                    res = String.Format("{0} - {1}[{2},{3}]", dname, fname, (parameters.Count > 0) ? parameters[0] : "", (parameters.Count > 1) ? parameters[1] : "");
+                    break;
+                case (CompositeFunc.SubStringString):
                     fname = (string)Application.Current.FindResource("Composite_FSubstringShort");
                     res = String.Format("{0} - {1}[{2},{3}]", dname, fname, (parameters.Count > 0) ? parameters[0] : "", (parameters.Count > 1) ? parameters[1] : "");
                     break;

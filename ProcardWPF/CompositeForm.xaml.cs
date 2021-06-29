@@ -30,6 +30,7 @@ namespace ProcardWPF
             cbFunction.Items.Add(new Para((int)CompositeFunc.None, (string)this.FindResource("NotDefined")));
             cbFunction.Items.Add(new Para((int)CompositeFunc.AddChar, (string)this.FindResource("Composite_FAddChar")));
             cbFunction.Items.Add(new Para((int)CompositeFunc.SubString, (string)this.FindResource("Composite_FSubstring")));
+            cbFunction.Items.Add(new Para((int)CompositeFunc.SubStringString, (string)this.FindResource("Composite_FSubstringString")));
             cbFunction.Items.Add(new Para((int)CompositeFunc.Split, (string)this.FindResource("Composite_FArrayItem")));
             cbFunction.Items.Add(new Para((int)CompositeFunc.Ean13, (string)this.FindResource("Composite_FEan13")));
             cbFunction.Items.Add(new Para((int)CompositeFunc.Sphinx, (string)this.FindResource("Composite_FSphinx")));
@@ -235,6 +236,17 @@ namespace ProcardWPF
                     tbPar1.Text = (string)c.Parameters[0];
                     tbPar2.Text = (string)c.Parameters[1];
                     c.Function = CompositeFunc.SubString;
+                    break;
+                case CompositeFunc.SubStringString:
+                    lPar1.SetResourceReference(Label.ContentProperty, "Composite_FSubstring1");
+                    lPar2.SetResourceReference(Label.ContentProperty, "Composite_FSubstring3");
+                    spPar1.Visibility = Visibility.Visible;
+                    spPar2.Visibility = Visibility.Visible;
+                    while (c.Parameters.Count < 2)
+                        c.Parameters.Add("");
+                    tbPar1.Text = (string)c.Parameters[0];
+                    tbPar2.Text = (string)c.Parameters[1];
+                    c.Function = CompositeFunc.SubStringString;
                     break;
                 case CompositeFunc.Split:
                     lPar1.SetResourceReference(Label.ContentProperty, "Composite_FArrayItem1");
