@@ -2508,8 +2508,8 @@ namespace ProcardWPF
                 catch
                 {
                 }
-                printStatus.Dispatcher.Invoke(new Action(delegate () {
-                    printStatus.SetMessage(str);
+                printStatus?.Dispatcher?.Invoke(new Action(delegate () {
+                    printStatus?.SetMessage(str);
                 }), System.Windows.Threading.DispatcherPriority.Background);
             }
             if (messageType == Devices.MessageType.CardOK)
@@ -2745,7 +2745,7 @@ namespace ProcardWPF
                                 card.objects[i].Draw(dc, Regim.ToPrinter, false, 0);
                         dc.Close();
                     }
-
+                    
                     //dc.Close();
 
                     if (DeviceClass.IsPrinter(card.device.DeviceType))

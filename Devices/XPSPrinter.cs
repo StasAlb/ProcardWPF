@@ -246,12 +246,16 @@ namespace Devices
                 printTicket.Duplexing = Duplexing.TwoSidedLongEdge;
                 printTicket.PageOrientation = PageOrientation.Landscape;
                 printTicket.PageResolution = new PageResolution(300, 300, PageQualitativeResolution.Draft);
+                
 
                 ValidationResult validationResult = printQueue.MergeAndValidatePrintTicket(printQueue.UserPrintTicket, printTicket);
 
                 string xmlString = PrintTicketXml.Prefix;
                 xmlString += (NoTopper) ? PrintTicketXml.ToppingOff : PrintTicketXml.ToppingOn;
-                xmlString += PrintTicketXml.FlipFrontNone;
+                //if (dvBackImage == null)
+                  //  xmlString += PrintTicketXml.FlipBackNone;
+                //else
+                    xmlString += PrintTicketXml.FlipBackFlipped;
                 xmlString += PrintTicketXml.Suffix;
 
                 XmlDocument xmlDocument = new XmlDocument();
@@ -271,11 +275,68 @@ namespace Devices
                         PrintQueue = printQueue
                         //PrintQueue = new PrintQueue(new PrintServer(), printerName)
                     };
-                
-                if (dvFrontImage != null)
-                    printDialog.PrintVisual(dvFrontImage, "Print");
-                if (dvBackImage != null)
-                    printDialog.PrintVisual(dvBackImage, "Print");
+
+                //int height = (int)printDialog.PrintableAreaHeight;
+                //int width = (int)printDialog.PrintableAreaWidth;
+                int height = (int)printDialog.PrintTicket.PageMediaSize.Height;
+                int width = (int)printDialog.PrintTicket.PageMediaSize.Width;
+
+                System.Windows.Documents.FixedDocument doc = new System.Windows.Documents.FixedDocument();
+
+                System.Windows.Documents.FixedPage pageF = new System.Windows.Documents.FixedPage();
+                pageF.Height = height;
+                pageF.Width = width; ;
+                System.Windows.Documents.PageContent contentF = new System.Windows.Documents.PageContent();
+                contentF.Child = pageF;
+                doc.Pages.Add(contentF);
+                VisualBrush brushF = new VisualBrush(dvFrontImage);
+                brushF.AlignmentX = AlignmentX.Left;
+                brushF.AlignmentY = AlignmentY.Top;
+                //brushF.Stretch = Stretch.None;
+                //brushF.TileMode = TileMode.None;
+                brushF.Viewbox = new Rect(0, 0, width, height);
+                brushF.ViewboxUnits = BrushMappingMode.Absolute;
+                RenderOptions.SetBitmapScalingMode(brushF, BitmapScalingMode.HighQuality);
+                System.Windows.Controls.Canvas canvasF = new System.Windows.Controls.Canvas();
+                canvasF.Background = brushF;
+                canvasF.Height = height;
+                canvasF.Width = width;
+                System.Windows.Documents.FixedPage.SetLeft(canvasF, 0);
+                System.Windows.Documents.FixedPage.SetTop(canvasF, 0);
+                pageF.Children.Add(canvasF);
+
+                System.Windows.Documents.FixedPage pageB = new System.Windows.Documents.FixedPage();
+                pageB.Height = height;
+                pageB.Width = width;
+                System.Windows.Documents.PageContent contentB = new System.Windows.Documents.PageContent();
+                contentB.Child = pageB;
+                doc.Pages.Add(contentB);
+                VisualBrush brushB = new VisualBrush(dvBackImage);
+                brushB.AlignmentX = AlignmentX.Left;
+                brushB.AlignmentY = AlignmentY.Top;
+                //brushB.Stretch = Stretch.None;
+                //brushB.TileMode = TileMode.None;
+                //brushB.Viewbox = new Rect(0, (int)printDialog.PrintableAreaHeight, (int)printDialog.PrintableAreaWidth, 2 * (int)printDialog.PrintableAreaHeight);
+                brushB.Viewbox = new Rect(0, 0, width, height);
+                brushB.ViewboxUnits = BrushMappingMode.Absolute;
+                RenderOptions.SetBitmapScalingMode(brushB, BitmapScalingMode.HighQuality);
+                System.Windows.Controls.Canvas canvasB = new System.Windows.Controls.Canvas();
+                canvasB.Background = brushB;
+                canvasB.Height = height;
+                canvasB.Width = width;
+                System.Windows.Documents.FixedPage.SetLeft(canvasB, 0);
+                System.Windows.Documents.FixedPage.SetTop(canvasB, 0);
+                pageB.Children.Add(canvasB);
+
+
+                printDialog.PrintDocument(doc.DocumentPaginator, "Print");
+
+
+                //if (dvFrontImage != null)
+                //    printDialog.PrintVisual(dvFrontImage, "Print");
+                //if (dvBackImage != null)
+                //    printDialog.PrintVisual(dvBackImage, "Print");
+
 
                 //PrintDocument printDocument = new PrintDocument();
                 //printDocument.PrinterSettings.PrinterName = printerName;
@@ -337,7 +398,7 @@ namespace Devices
         private void PrintDocument_QueryPageSettings(object sender, QueryPageSettingsEventArgs e)
         {
         }
-        private void PrintDocument_BeginPrint(object sender, PrintEventArgs e)
+        private void PrintDocument_BeginPrint1111(object sender, PrintEventArgs e)
         {
             PrintQueue printQueue = new PrintQueue(new LocalPrintServer(), printerName);
             PrintTicket printTicket = new PrintTicket();

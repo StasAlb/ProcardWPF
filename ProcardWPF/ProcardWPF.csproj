@@ -69,10 +69,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Interop.AKSHASP, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Interop.AKSHASP">
+      <HintPath>..\distr\Interop.AKSHASP.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>bin\Debug\Interop.AKSHASP.dll</HintPath>
     </Reference>
     <Reference Include="Neodynamic.WPF.Barcode, Version=6.0.3500.0, Culture=neutral, PublicKeyToken=c6b33c3093a0d4cd, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
